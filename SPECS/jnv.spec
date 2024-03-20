@@ -1,0 +1,39 @@
+%global debug_package %{nil}
+
+Name:           jnv
+Version:        0.1.0
+Release:        1
+Summary:        interactive JSON filter using jq
+Group:          Applications/System
+License:        MIT
+URL:            https://github.com/ynqa/%{name}
+BuildRequires:  cmake
+BuildRequires:  cargo, rust, clang-devel, clang-libs
+Source:         https://github.com/ynqa/%{name}/archive/refs/tags/v0.1.0.tar.gz
+
+%description
+jnv is designed for navigating JSON, offering an interactive JSON
+viewer and jq filter editor.
+
+%prep
+%setup -q -n %{name}-%{version}
+
+%build
+cargo build --release
+
+%install
+rm -rf %{buildroot}
+mkdir -p %{buildroot}/usr/bin
+cp target/release/jnv %{buildroot}/usr/bin/
+
+%clean
+rm -rf %{buildroot}
+
+%files
+%defattr(-,root,root,-)
+%doc LICENSE* *.md
+/usr/bin/jnv
+
+%changelog
+* Wed Mar 20 2024 Jamie Curnow <jc@jc21.com> - 0.1.0-1
+- v0.1.0
