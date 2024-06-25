@@ -1,8 +1,8 @@
 %global debug_package %{nil}
 
 Name:           jnv
-Version:        0.1.0
-Release:        1
+Version:        0.3.0
+Release:        1%{?dist}
 Summary:        interactive JSON filter using jq
 Group:          Applications/System
 License:        MIT
@@ -35,5 +35,8 @@ rm -rf %{buildroot}
 /usr/bin/jnv
 
 %changelog
+* Tue Jun 25 2024 Jamie Curnow <jc@jc21.com> - 0.3.0-1
+- v0.3.0
+
 * Wed Mar 20 2024 Jamie Curnow <jc@jc21.com> - 0.1.0-1
 - v0.1.0
