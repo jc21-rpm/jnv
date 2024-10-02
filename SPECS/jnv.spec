@@ -9,7 +9,7 @@ License:        MIT
 URL:            https://github.com/ynqa/%{name}
 BuildRequires:  cmake
 BuildRequires:  cargo, rust, clang-devel, clang-libs
-Source:         https://github.com/ynqa/%{name}/archive/refs/tags/v0.1.0.tar.gz
+Source:         https://github.com/ynqa/%{name}/archive/refs/tags/v%{version}.tar.gz
 
 %description
 jnv is designed for navigating JSON, offering an interactive JSON
@@ -22,9 +22,8 @@ viewer and jq filter editor.
 cargo build --release
 
 %install
-rm -rf %{buildroot}
-mkdir -p %{buildroot}/usr/bin
-cp target/release/jnv %{buildroot}/usr/bin/
+install -d -m 755 $RPM_BUILD_ROOT%{_bindir}
+install -m 0755 target/release/%{name} $RPM_BUILD_ROOT%{_bindir}
 
 %clean
 rm -rf %{buildroot}
@@ -32,7 +31,7 @@ rm -rf %{buildroot}
 %files
 %defattr(-,root,root,-)
 %doc LICENSE* *.md
-/usr/bin/jnv
+%{_bindir}/%{name}
 
 %changelog
 * Tue Jun 25 2024 Jamie Curnow <jc@jc21.com> - 0.3.0-1
